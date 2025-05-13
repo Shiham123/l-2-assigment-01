@@ -1,4 +1,4 @@
-// problem 01
+// ! problem 01
 
 function formatString(input: string, toUpper?: boolean): string {
   const result = toUpper === false ? input.toLowerCase() : input.toUpperCase();
@@ -9,7 +9,7 @@ function formatString(input: string, toUpper?: boolean): string {
 // console.log(formatString("Hello"));
 // console.log(formatString("Hello", false));
 
-// problem 02
+// ! problem 02
 function filterByRating(
   items: { title: string; rating: number }[]
 ): { title: string; rating: number }[] {
@@ -24,7 +24,7 @@ function filterByRating(
 
 // console.log(filterByRating(books));
 
-// problem 03
+// ! problem 03
 const concatenateArrays = <T>(...arrays: T[][]): T[] => {
   return arrays.flat();
 };
@@ -32,7 +32,7 @@ const concatenateArrays = <T>(...arrays: T[][]): T[] => {
 // console.log(concatenateArrays(["a", "b"], ["c"]));
 // console.log(concatenateArrays([1, 2], [3, 4], [5]));
 
-// problem 04
+// ! problem 04
 class Vehicle {
   private make: string;
   private year: number;
@@ -63,7 +63,7 @@ class Car extends Vehicle {
 // console.log(myCar.getInfo());
 // console.log(myCar.getModel());
 
-// problem 05
+// ! problem 05
 function processValue(value: string | number): number {
   if (typeof value === "string") {
     return value.length;
@@ -75,5 +75,71 @@ function processValue(value: string | number): number {
 // console.log(processValue("shiham"));
 // console.log(processValue(10));
 
+// ! problem 06
+interface Product {
+  name: string;
+  price: number;
+}
 
-// problem 06
+function getMostExpensiveProduct(products: Product[]): Product | null {
+  if (products.length === 0) {
+    return null;
+  }
+
+  let mostExpensiveProduct = products[0];
+  console.log(mostExpensiveProduct);
+
+  for (const product of products) {
+    if (product.price > mostExpensiveProduct.price) {
+      mostExpensiveProduct = product;
+    }
+  }
+
+  return mostExpensiveProduct;
+}
+
+// const products = [
+//   { name: "Pen", price: 10 },
+//   { name: "Notebook", price: 25 },
+//   { name: "Bag", price: 50 },
+// ];
+
+// console.log(getMostExpensiveProduct(products));
+
+// ! problem 07
+enum Day {
+  monday,
+  tuesday,
+  wednesday,
+  thursday,
+  friday,
+  saturday,
+  sunday,
+}
+
+function getDayType(day: Day): string {
+  if (day === Day.sunday || day === Day.friday) {
+    return "weekend";
+  } else {
+    return "weekday";
+  }
+}
+
+// console.log(getDayType(Day.monday));
+// console.log(getDayType(Day.sunday));
+
+// ! Problem 08
+async function squareAsync(durationNumber: number): Promise<number> {
+  if (durationNumber < 0) {
+    return Promise.reject(new Error(`Negative number not allowed`));
+  }
+
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(durationNumber * durationNumber);
+    }, 1000);
+  });
+}
+
+// squareAsync(4).then(console.log).catch(console.error);
+// squareAsync(-3).then(console.log).catch(console.error);
